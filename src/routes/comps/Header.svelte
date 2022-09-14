@@ -1,20 +1,49 @@
 <script>
     import Avatar from "./Avatar.svelte";
     import NavLink from "./NavLink.svelte";
+    import { Icon } from '@steeze-ui/svelte-icon'
+    import { Bars3 } from '@steeze-ui/heroicons'
+    import { navigating } from '$app/stores';
 
     const content = [
-        {title: "Projects", link: "/test"},
-        {title: "Downloads", link: "/dfs"},
+        {title: "Projects", link: "/projects"},
+        {title: "Downloads", link: "/downloads"},
     ]
+
+    let open = false;
+
+    const close = () => open = false;
+
+    $: if($navigating) close();
 </script>
 
 <header class="py-6 shadow-lg">
-    <nav class="main-container flex justify-between items-center">
+    <nav class="flex items-center justify-between main-container">
         <Avatar />
-        <ul class="flex gap-2">
-            {#each content as c}
-                <li><NavLink content={c}/></li>
-            {/each}
-        </ul>
+        <div class="relative text-white/75">
+            <button class="rounded-xl bg-[#2B2B2B] px-3.5 py-2 cursor-pointer md:hidden hover:bg-[#313131] duration-200"
+                    on:click={()=>{open=!open}}><Icon size="30" src={Bars3}/></button>
+            <ul class={`
+            absolute
+            right-0
+            top-[calc(100%+10px)]
+            flex
+            flex-col
+            gap-0
+            md:gap-2
+            rounded-xl
+            bg-[#2B2B2B]
+            p-2
+            md:static
+            md:flex
+            md:flex-row
+            md:bg-transparent
+            md:p-0
+            `} class:hidden={!open}>
+                {#each content as c}
+                    <li><NavLink content={c}/></li>
+                {/each}
+            </ul>
+        </div>
     </nav>
 </header>
