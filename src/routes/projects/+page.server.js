@@ -11,7 +11,7 @@ export const load = async () => {
     const allRepos = (await (await fetch("https://api.github.com/search/repositories?q=user:Gagezilla+topic:showcase")).json()).items
     const repos = allRepos.map(repo => {
         if (repo.topics.includes("showcase")) {
-            let name = repo.name
+            let name = repo.name.split("-").map(c => c[0].toUpperCase()+c.substr(1)).join(" ")
             let desc = repo.description
             let img = "https://raw.githubusercontent.com/Gagezilla/" + repo.name + "/" + repo.default_branch + "/showcase.png"
             return {name, desc, img}

@@ -17,11 +17,11 @@
     $: if($navigating) close();
 </script>
 
-<header class="py-6 shadow-lg">
+<header class="py-6 shadow-lg mb-6">
     <nav class="flex items-center justify-between main-container">
         <Avatar />
-        <div class="relative text-white/75">
-            <button class="rounded-xl bg-[#2B2B2B] px-3.5 py-2 cursor-pointer md:hidden hover:bg-[#313131] duration-200"
+        <div class="relative">
+            <button class="rounded-xl bg-button+bg px-3.5 py-2 cursor-pointer md:hidden hover:bg-button-hover+bg duration-200"
                     on:click={()=>{open=!open}}><Icon size="30" src={Bars3}/></button>
             <ul class={`
             absolute

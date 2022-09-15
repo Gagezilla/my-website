@@ -8,7 +8,9 @@
     @apply mx-auto;
 }
 
-html {
-    @apply text-white;
-    @apply bg-neutral-800;
+:root {
+    color-scheme: dark;
+    @apply text-body+text;
+    @apply bg-body+bg;
+    @apply overflow-y-scroll;
 }

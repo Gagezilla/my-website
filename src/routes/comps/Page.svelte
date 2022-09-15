@@ -1,11 +1,12 @@
 <script>
     import SEO from "./SEO.svelte";
+    import { fly } from "svelte/transition";
 
     export let title;
     export let content;
 </script>
 <SEO {title} {content} />
 
-<main class="main-container">
+<main class="main-container" out:fly={{y: -10, duration: 500}} in:fly={{delay: 500, duration: 500, y: -10}}>
     <slot />
 </main>
