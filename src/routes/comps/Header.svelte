@@ -17,7 +17,7 @@
     $: if($navigating) close();
 </script>
 
-<header class="py-6 shadow-lg mb-6">
+<header class="py-6 shadow-lg">
     <nav class="flex items-center justify-between main-container">
         <Avatar />
         <div class="relative">
@@ -39,6 +39,7 @@
             md:flex-row
             md:bg-transparent
             md:p-0
+            z-50
             `} class:hidden={!open}>
                 {#each content as c}
                     <li><NavLink content={c}/></li>

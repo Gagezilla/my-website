@@ -4,9 +4,10 @@
 
     export let title;
     export let content;
+    export let notoppad;
 </script>
 <SEO {title} {content} />
 
-<main class="main-container" out:fly={{y: -10, duration: 500}} in:fly={{delay: 500, duration: 500, y: -10}}>
+<main class:pt-6={!notoppad} class="main-container" out:fly={{y: -10, duration: 500}} in:fly={{delay: 500, duration: 500, y: -10}}>
     <slot />
 </main>
