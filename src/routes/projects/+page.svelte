@@ -7,9 +7,10 @@
 <Page title="Projects" content="This is the projects page.">
     <div class="grid md:grid-cols-2 grid-cols-1 gap-8">
         {#each data.repos as repo, i}
-            <a in:fly={{delay: 500+(50*i), duration: 500, y: -10}}
+            <a in:fly={{delay: 500+(75*i), duration: 500, y: -10}}
                class="bg-button+bg rounded-xl overflow-hidden hover:bg-button-hover+bg duration-200 group"
-               href="/">
+               target="_blank"
+               href={repo.url}>
                 <div class="p-4">
                     <h1 class="font-medium">{repo.name}</h1>
                     <p class="text-[.9rem] text-white/75">{repo.desc}</p>

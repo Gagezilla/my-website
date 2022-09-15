@@ -8,15 +8,14 @@ export const load = async () => {
 
     console.log("Querying for any github updates...")
 
-    const allRepos = (await (await fetch("https://api.github.com/search/repositories?q=user:Gagezilla+topic:showcase")).json()).items
-    const repos = allRepos.map(repo => {
-        if (repo.topics.includes("showcase")) {
-            let name = repo.name.split("-").map(c => c[0].toUpperCase()+c.substr(1)).join(" ")
-            let desc = repo.description
-            let img = "https://raw.githubusercontent.com/Gagezilla/" + repo.name + "/" + repo.default_branch + "/showcase.png"
-            return {name, desc, img}
-        }
-    }).filter(repo => repo)
+    const searchResults = (await (await fetch("https://api.github.com/search/code?q=user:Gagezilla+path:/+filename:showcase.png")).json()).items
+    const repos = searchResults.map(result => {
+        let repo = result.repository
+        let name = repo.name.split("-").map(c => c[0].toUpperCase()+c.substr(1)).join(" ")
+        let desc = repo.description
+        let img = "https://raw.githubusercontent.com/Gagezilla/" + repo.name + "/main/showcase.png"
+        return {name, desc, img, url: repo.html_url}
+    })
 
     lastTime = Date.now()
     cachedRepos = repos
