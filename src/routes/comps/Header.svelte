@@ -2,7 +2,7 @@
     import Avatar from "./Avatar.svelte";
     import NavLink from "./NavLink.svelte";
     import { Icon } from '@steeze-ui/svelte-icon'
-    import { Bars3 } from '@steeze-ui/heroicons'
+    import { MarkGithub, ThreeBars } from '@steeze-ui/octicons'
     import { navigating } from '$app/stores';
 
     const content = [
@@ -20,9 +20,12 @@
 <header class="py-6 shadow-lg">
     <nav class="flex items-center justify-between main-container">
         <Avatar />
-        <div class="relative">
-            <button class="rounded-xl bg-button+bg px-3.5 py-2 cursor-pointer md:hidden hover:bg-button-hover+bg duration-200"
-                    on:click={()=>{open=!open}}><Icon size="30" src={Bars3}/></button>
+        <div class="flex items-center relative gap-2">
+            <a class="p-3.5 hover:bg-button-hover+bg duration-200 rounded-xl" target="_blank" href="https://github.com/Gagezilla">
+                <Icon size="22" src={MarkGithub}/>
+            </a>
+            <button class="rounded-xl bg-button+bg p-3.5 cursor-pointer md:hidden hover:bg-button-hover+bg duration-200 text-white/75"
+                    on:click={()=>{open=!open}}><Icon size="22" src={ThreeBars}/></button>
             <ul class={`
             absolute
             right-0
