@@ -6,7 +6,7 @@
     import { navigating } from '$app/stores';
 
     const content = [
-        {title: "Projects", link: "/projects"},
+        {title: "IMGEN", link: "/image-generation"},
         {title: "Downloads", link: "/downloads"},
     ]
 
