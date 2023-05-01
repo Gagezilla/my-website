@@ -50,6 +50,6 @@
             <button class="border-white border-2 rounded-xl px-4 py-2" on:click={generateImage}>Generate</button>
         </div>
         <p class="my-10">{genText}</p>
-        <img {src} class="w-[512px] h-[512px] rounded-xl" alt="generated image">
+        <img {src} class="min-w-[512px] min-h-[512px] rounded-xl" alt="generated image">
     </div>
 </Page>
