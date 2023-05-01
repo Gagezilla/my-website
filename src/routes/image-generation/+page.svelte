@@ -7,6 +7,7 @@
     let src = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/768px-Solid_white.svg.png";
     let genText = "not generating"
     let prompt;
+    let disabled;
 
     if (browser) {
         socket = new WebSocket("wss://ig.gagey.dev:8765");
@@ -20,6 +21,7 @@
             if (m.data !== "in use by another user") {
                 src = "data:image/png;base64," + m.data
                 genText = "finished generating"
+                disabled = false
             }
             else {
                 genText = m.data
@@ -30,6 +32,7 @@
     function generateImage() {
         socket.send("queue~Lykon/DreamShaper~"+prompt+"~bad anatomy~35")
         genText = "generating..."
+        disabled = true
     }
 
     onDestroy(() => {
@@ -47,7 +50,7 @@
     <div class="flex flex-col items-center text-center font-medium text-3xl mt-20">
         <div class="flex max-w-[512px] gap-4">
             <input bind:value={prompt} class="border-white border-2 rounded-xl px-4 py-2 min-w-0" type="text">
-            <button class="border-white border-2 rounded-xl px-4 py-2" on:click={generateImage}>Generate</button>
+            <button {disabled} class="border-white border-2 rounded-xl px-4 py-2" on:click={generateImage}>Generate</button>
         </div>
         <p class="my-10">{genText}</p>
         <img {src} class="min-w-[512px] min-h-[512px] rounded-xl" alt="generated image">
